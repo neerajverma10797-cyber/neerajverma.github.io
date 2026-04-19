@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>सरकारी नौकरी पोर्टल - Neeraj Verma</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Hind:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --orange: #FF9933;
+            --green: #138808;
+            --blue: #000080;
+        }
+
+        body {
+            font-family: 'Poppins', 'Hind', sans-serif;
+            background: #f5f7fa;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--orange), var(--green));
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo i { font-size: 2rem; color: #FFD700; }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .nav-menu a:hover { color: #FFD700; }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1587474260584-136574528ed5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            background: white;
+            padding: 1rem;
+            border-radius: 50px;
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box button {
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Sections */
+        .sections-container {
+            max-width: 1400px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .section-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 5px solid var(--orange);
+        }
+
+        .section-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .section-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--orange), var(--green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .section-card h2 {
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-count {
+            background: linear-gradient(90deg, var(--orange), var(--green));
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .job-list { list-style: none; }
+
+        .job-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .job-list li a {
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .job-list li a:hover { color: var(--orange); }
+
+        .job-meta {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .new-badge {
+            background: #ff4757;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+            font-size: 0.7rem;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--orange), var(--green));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #FFD700;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: var(--orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hero-content h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-flag"></i>
+                <span>सरकारी नौकरी पोर्टल</span>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#latest">Latest Jobs</a></li>
+                    <li><a href="#results">Results</a></li>
+                    <li><a href="#admit">Admit Cards</a></li>
+                    <li><a href="#answer">Answer Key</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>भारत सरकार नौकरियाँ</h1>
+            <p>SSC, Banking, Railway, UPSC और अन्य सभी सरकारी भर्तियाँ</p>
+            <div class="search-box">
+                <input type="text" placeholder="नौकरी खोजें...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <div class="sections-container">
+        <div class="section-card" id="latest">
+            <div class="section-icon"><i class="fas fa-briefcase"></i></div>
+            <h2>Latest Jobs</h2>
+            <span class="job-count">5 New Vacancies</span>
+            <ul class="job-list">
+                <li>
+                    <a href="#">SSC CGL 2024 - 7500+ Posts</a>
+                    <span class="job-meta">
+                        <span>Last Date: 25 Dec</span>
+                        <span class="new-badge">NEW</span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#">IBPS PO 2024-25 - 4500 Posts</a>
+                    <span class="job-meta">
+                        <span>Last Date: 28 Dec</span>
+                        <span class="new-badge">NEW</span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#">Railway RRB NTPC 2024 - 3500 Posts</a>
+                    <span class="job-meta">
+                        <span>Last Date: 31 Dec</span>
+                        <span class="new-badge">NEW</span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#">UPSC CDS 2024 - 459 Posts</a>
+                    <span class="job-meta">
+                        <span>Last Date: 02 Jan</span>
+                        <span class="new-badge">NEW</span>
+                    </span>
+                </li>
+                <li>
+                    <a href="#">Delhi Police Constable - 1200 Posts</a>
+                    <span class="job-meta">
+                        <span>Last Date: 15 Jan</span>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-card" id="results">
+            <div class="section-icon"><i class="fas fa-trophy"></i></div>
+            <h2>Results</h2>
+            <span class="job-count">Recently Declared</span>
+            <ul class="job-list">
+                <li>
+                    <a href="#">SSC CGL Tier 1 Result 2024</a>
+                    <span class="job-meta"><span>Declared</span></span>
+                </li>
+                <li>
+                    <a href="#">UPSC Civil Services 2023</a>
+                    <span class="job-meta"><span>Declared</span></span>
+                </li>
+                <li>
+                    <a href="#">IBPS Clerk 2024 Prelims</a>
+                    <span class="job-meta"><span>Declared</span></span>
+                </li>
+                <li>
+                    <a href="#">Railway Group D 2024</a>
+                    <span class="job-meta"><span>Declared</span></span>
+                </li>
+                <li>
+                    <a href="#">NDA 2024 Final Result</a>
+                    <span class="job-meta"><span>Declared</span></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-card" id="admit">
+            <div class="section-icon"><i class="fas fa-id-card"></i></div>
+            <h2>Admit Cards</h2>
+            <span class="job-count">Download Now</span>
+            <ul class="job-list">
+                <li>
+                    <a href="#">SSC CGL Tier 2 Admit Card</a>
+                    <span class="job-meta"><span>Available</span><span class="new-badge">HOT</span></span>
+                </li>
+                <li>
+                    <a href="#">IBPS PO Mains Admit Card</a>
+                    <span class="job-meta"><span>Available</span><span class="new-badge">HOT</span></span>
+                </li>
+                <li>
+                    <a href="#">Railway RRB ALP Admit Card</a>
+                    <span class="job-meta"><span>Available</span><span class="new-badge">HOT</span></span>
+                </li>
+                <li>
+                    <a href="#">UPSC CSE Prelims</a>
+                    <span class="job-meta"><span>Available</span><span class="new-badge">HOT</span></span>
+                </li>
+                <li>
+                    <a href="#">CTET 2024 Admit Card</a>
+                    <span class="job-meta"><span>Available</span><span class="new-badge">HOT</span></span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="section-card" id="answer">
+            <div class="section-icon"><i class="fas fa-key"></i></div>
+            <h2>Answer Key</h2>
+            <span class="job-count">Check Answers</span>
+            <ul class="job-list">
+                <li>
+                    <a href="#">SSC CGL Tier 1 Answer Key</a>
+                    <span class="job-meta"><span>Released</span></span>
+                </li>
+                <li>
+                    <a href="#">UPSC Prelims 2024</a>
+                    <span class="job-meta"><span>Released</span></span>
+                </li>
+                <li>
+                    <a href="#">IBPS PO Prelims</a>
+                    <span class="job-meta"><span>Released</span></span>
+                </li>
+                <li>
+                    <a href="#">Railway NTPC</a>
+                    <span class="job-meta"><span>Released</span></span>
+                </li>
+                <li>
+                    <a href="#">NDA 2024 Answer Key</a>
+                    <span class="job-meta"><span>Released</span></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Contact Information</h3>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-user"></i>
+                    <p>Neeraj Verma</p>
+                    <p>Delhi Fire Service</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p><a href="tel:+917566715318">7566715318</a></p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <p><a href="mailto:neerajverma10797@gmail.com">neerajverma10797@gmail.com</a></p>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="https://instagram.com/agniyoddha_neeraj" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/917566715318" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:neerajverma10797@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.8;">© 2024 सरकारी नौकरी पोर्टल | Made with ❤️ for India</p>
+        </div>
+    </footer>
+</body>
+</html>
